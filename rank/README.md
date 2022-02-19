@@ -1,3 +1,3 @@
 # Rank Dashboard
 
-\[Total Score = 0.2Professionalism\]
+$displaymath[Total Score = 0.2Professionalism\]$
