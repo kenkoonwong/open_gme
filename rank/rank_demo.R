@@ -11,7 +11,7 @@ library(rvest)
 
 
 # load dataset ----
-load("rank/rank_fake.rda")
+load("rank_fake.rda")
 
 header <- dashboardHeader(title = "Ranking")
 
