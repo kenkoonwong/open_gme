@@ -4,10 +4,7 @@ library(plotly)
 library(shiny)
 library(shinydashboard)
 library(DT)
-library(googlesheets4)
 library(ggpubr)
-library(googledrive)
-library(rvest)
 
 
 # load dataset ----
