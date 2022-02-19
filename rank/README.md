@@ -1,3 +1,7 @@
 # Rank Dashboard
 
 $displaymath[Total Score = 0.2Professionalism\]$
+
+\begin{equation}
+E=m
+\end{equation}
