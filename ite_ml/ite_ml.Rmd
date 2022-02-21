@@ -22,6 +22,13 @@ library(gridExtra)
 ```{r, include=FALSE}
 load("ite_fake.rda")
 
+# uncomment below for faster processing through parallel processing
+# all_cores <- parallel::detectCores(logical = FALSE)
+# 
+# library(doParallel)
+# cl <- makePSOCKcluster(all_cores)
+# registerDoParallel(cl)
+
 ```
 
 ```{r, echo=FALSE}
@@ -244,10 +251,11 @@ rfmetric  %>%
 
 ## Random Forest (with tuning)
 ```{r, error=FALSE, warning=TRUE, echo=FALSE, message=FALSE}
+
 rftunemodel <- rand_forest(
   mtry = tune(),
   trees = 100,
-  min_n = tune()
+  min_n = tune(),
 ) %>%
   set_engine("ranger", importance = "impurity") %>%
   set_mode("classification")
