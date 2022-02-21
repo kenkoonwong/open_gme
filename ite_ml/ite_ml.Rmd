@@ -1,0 +1,430 @@
+---
+title: "ITE machine learning with Tidymodels"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(tidymodels)
+library(DT)
+library(discrim)
+library(themis)
+library(vip)
+library(gridExtra)
+
+```
+
+# Glimpse of prior ITE scores (dataset)
+```{r, include=FALSE}
+load("ite_fake.rda")
+
+```
+
+```{r, echo=FALSE}
+datatable(ite)
+```
+
+
+# Comparing ITE scores & percentile between passed and failed learners by their training years
+```{r echo=FALSE}
+ite_tidy <- ite %>%
+  gather(key, value, -Resident, -Pass) %>%
+  separate(key, c("PGY","style"), "_") %>%
+  spread(style,value)
+
+ite_tidy$Resident <- as.factor(ite_tidy$Resident)
+ite_tidy$Pass <- as.factor(ite_tidy$Pass)
+ite_tidy$PGY <- as.factor(ite_tidy$PGY)
+
+# preparing plot for ite_score
+ite.plot <- ggplot(ite_tidy, 
+                   aes(x=Pass, y=score, fill=PGY)) + 
+  geom_boxplot(alpha=0.4) + 
+  geom_jitter(alpha=0.5) +
+  facet_grid(. ~ PGY) +
+  ylab("ITE Score") +
+  xlab("First Attempt Pass") +
+  ggtitle("Pass/Fail IM Boards vs. ITE percent correct") +
+  theme_bw() 
+
+# preparing plot for ite_percentile
+ite.plot2 <- ggplot(ite_tidy, 
+                   aes(x=Pass, y=percentile, fill=PGY)) + 
+  geom_boxplot(alpha=0.4) + 
+  geom_jitter(alpha=0.5) + 
+  facet_grid(. ~ PGY) +
+  ylab("ITE Percentile") +
+  xlab("First Attempt Pass") +
+  ggtitle("Pass/Fail IM Boards vs. ITE Percentile compared to National mean") +
+  theme_bw()
+
+grid.arrange(ite.plot,ite.plot2,nrow=1)
+```
+
+
+
+# Splitting data to training and testing
+
+This is our first 6 rows of training dataset:
+```{r, echo=FALSE, warning=FALSE}
+# removing resident from dataframe and make sure "Pass" variable is a factor
+ite2 <- ite %>%
+  dplyr::select(-Resident) %>%
+  mutate(Pass = as.factor(Pass)) 
+
+# always set.seed in order to reproduce the same result in the future
+set.seed(1)
+split <- initial_split(data = ite2, strata = Pass)
+train <- training(split)
+test <- testing(split)
+
+# take a peek at our training data
+train %>% head()
+```
+
+
+# Preprocessing / feature engineering
+Taking a look at our preprocessed training data
+Since there usually is less Fail in a program, will use upsampling to increase this number so that we can assess our training model better
+As you can see now we have 5 fails and 5 pass
+```{r, echo=FALSE}
+ite2_recipe <- recipes::recipe(Pass ~., data = train) %>%
+  themis::step_upsample(Pass) %>% # since there usually is less Fail in a program, will use upsampling to increase this number so that we can assess our training model better
+  recipes::step_normalize(all_predictors()) 
+
+ite2_prep <- ite2_recipe %>%
+  prep()
+
+ite2_prep %>% juice() %>% datatable()
+
+```
+
+
+# Preparing our cross validation (model validation dataset) (k=5, repeats =5)
+```{r, echo=FALSE}
+set.seed(1)
+cv <- vfold_cv(data = train, v = 5, repeats = 5, strata = Pass)
+cv
+```
+What this does is it uses our training set, group our training dataset 5 different times and uses 1 set as a test set. Then repeat 5 more times. 
+
+
+# Training using different models 
+Please remember to install the appropriate packages for the model you want to train with.
+Please take a look at available models https://www.tidymodels.org/find/parsnip/
+
+
+## K nearest neighbor
+```{r, warning=FALSE, echo=FALSE, message=FALSE}
+knnmodel <- nearest_neighbor() %>%
+  set_engine("kknn") %>%
+  set_mode("classification")
+
+knnwf <- workflow() %>%
+  add_recipe(ite2_recipe) %>%
+  add_model(knnmodel) 
+
+
+set.seed(1)
+knnres <- knnwf %>%
+  tune::fit_resamples(
+    resamples = cv,
+    metrics = metric_set(roc_auc, sens, spec, accuracy),
+    control = control_resamples(save_pred = TRUE, verbose = TRUE)
+  )
+
+
+knnres %>%
+  collect_predictions() %>%
+  conf_mat(Pass, .pred_class) 
+
+knnmetric <- knnres %>%
+  collect_metrics() 
+
+knnmetric %>%
+  datatable()
+```
+
+## Naive Bayes
+```{r, error=FALSE, warning=FALSE, echo=FALSE, message=FALSE}
+nbmodel <- naive_Bayes() %>%
+  set_engine("klaR") %>%
+  set_mode("classification")
+
+nbwf <- workflow() %>%
+  add_recipe(ite2_recipe) %>%
+  add_model(nbmodel)
+
+set.seed(1)
+nbres <- nbwf %>%
+  fit_resamples(
+    resamples = cv,
+    metrics = metric_set(roc_auc, sens, spec, accuracy),
+    control = control_resamples(save_pred = TRUE, verbose = TRUE)
+  )
+
+
+nbres %>%
+  collect_predictions() %>%
+  conf_mat(Pass, .pred_class)
+
+nbmetric <- nbres %>%
+  collect_metrics() 
+
+nbmetric %>%
+  datatable()
+```
+
+
+## Logistic Regression
+```{r, error=FALSE, warning=TRUE, echo=FALSE, message=FALSE}
+glmmodel <- logistic_reg() %>%
+  set_engine("glm") %>%
+  set_mode("classification")
+
+glmwf <- workflow() %>%
+  add_recipe(ite2_recipe) %>%
+  add_model(glmmodel)
+
+set.seed(1)
+glmres <- glmwf %>%
+  fit_resamples(
+    resamples = cv,
+    metrics = metric_set(roc_auc, sens, spec, accuracy),
+    control = control_resamples(save_pred = TRUE, verbose = TRUE)
+  )
+
+
+glmres %>%
+  collect_predictions() %>%
+  conf_mat(Pass, .pred_class)
+
+glmmetric <- glmres %>%
+  collect_metrics() 
+
+glmmetric %>%
+  datatable()
+```
+
+
+## Random Forest (without tuning)
+```{r, error=FALSE, warning=TRUE, echo=FALSE, message=FALSE}
+rfmodel <- rand_forest() %>%
+  set_engine("ranger", importance = "impurity") %>%
+  set_mode("classification")
+
+rfwf <- workflow() %>%
+  add_recipe(ite2_recipe) %>%
+  add_model(rfmodel)
+
+set.seed(1)
+rfres <- rfwf %>%
+  fit_resamples(
+    resamples = cv,
+    metrics = metric_set(roc_auc, sens, spec, accuracy),
+    control = control_resamples(save_pred = TRUE, verbose = TRUE)
+  )
+
+
+rfres %>%
+  collect_predictions() %>%
+  conf_mat(Pass, .pred_class)
+
+rfmetric <- rfres %>%
+  collect_metrics()
+
+rfmetric  %>%
+  datatable()
+```
+
+
+## Random Forest (with tuning)
+```{r, error=FALSE, warning=TRUE, echo=FALSE, message=FALSE}
+rftunemodel <- rand_forest(
+  mtry = tune(),
+  trees = 100,
+  min_n = tune()
+) %>%
+  set_engine("ranger", importance = "impurity") %>%
+  set_mode("classification")
+
+rftunewf <- workflow() %>%
+  add_recipe(ite2_recipe) %>%
+  add_model(rftunemodel)
+
+# caution this may take a while to train, ~5 minutes
+set.seed(1)
+tune_res <- tune_grid(
+  rftunewf,
+  resamples = cv,
+  grid = 30,
+  metrics = metric_set(roc_auc, sens, spec, accuracy)
+)
+
+tune_res %>%
+  collect_metrics() %>%
+  filter(.metric == "roc_auc" | .metric == "accuracy" | .metric == "sens") %>%
+  select(mean, .metric, min_n, mtry) %>%
+  pivot_longer(min_n:mtry,values_to = "value",
+               names_to = "parameter") %>%
+  ggplot(.,aes(value,mean,color = parameter)) +
+  geom_point() +
+  facet_grid(.metric~parameter, scales = "free") +
+  theme_bw()
+```
+
+We will explore regular grid of min_n of 1 to 10 & mtry 3 to 5, to see if there is an optimal number. trying to pick highest roc,sens,and spec
+
+
+```{r, echo=FALSE, message=FALSE, echo=FALSE}
+
+rf_grid <- grid_regular(
+  mtry(range = c(3,5)),
+  min_n(range = c(1,10)),
+  levels = 5
+)
+
+regular_res <- tune_grid(
+  rftunewf,
+  resamples = cv,
+  grid = rf_grid,
+  metrics = metric_set(roc_auc, sens, spec, accuracy)
+)
+
+regular_res %>% 
+  collect_metrics() %>% 
+  filter(.metric == "roc_auc" | .metric == "sens" | .metric == "accuracy") %>% 
+  select(mean, .metric, min_n, mtry) %>% 
+  pivot_longer(min_n:mtry,values_to = "value",
+               names_to = "parameter") %>% 
+  ggplot(aes(value, mean, color = parameter)) +
+  geom_line(alpha = 0.5, size = 1.5) +
+  geom_point() +
+  facet_grid(.metric~parameter, scales = "free") +
+  theme_bw()
+```
+
+Looking for best fit, highest accuracy, ROC AUC and sensitivity.
+Let's plug in min_n of 1 and mtry of 3
+
+## random forest (tuning w min_n of 1 and mtry of 3)
+```{r, echo=FALSE, message=FALSE}
+best <- regular_res %>%
+  collect_metrics() %>%
+  filter(min_n == 1 & mtry == 3) %>% 
+  select(mtry,min_n,.config) %>%
+  distinct()
+
+rftuneres <- finalize_model(
+  rftunemodel,
+  best
+)
+
+rftuneres
+
+```
+
+# Random Forest (tuned)
+```{r,echo=FALSE, message=FALSE}
+set.seed(1)
+rftuned <- workflow() %>%
+  add_recipe(ite2_recipe) %>%
+  add_model(rftuneres)%>%
+  fit_resamples(
+    resamples = cv,
+    metrics = metric_set(roc_auc, sens, spec, accuracy),
+    control = control_resamples(save_pred = TRUE, verbose = TRUE)
+  )
+
+rftuned %>%
+  collect_predictions() %>%
+  conf_mat(Pass, .pred_class)
+
+rftunemetric <- rftuned %>%
+  collect_metrics() 
+
+rftunemetric %>%
+  datatable()
+
+```
+
+# Let's compare all the models trained
+```{r,echo=FALSE, message=FALSE}
+compare <- knnmetric %>%
+  mutate(model = "knn") %>%
+  bind_rows(nbmetric %>% mutate(model = "naive_bayes"),
+            glmmetric %>% mutate(model = "logisti_regression"),
+            rfmetric %>% mutate(model = "random_forest"),
+            rftunemetric %>% mutate(model = "random_forest_tuned"))
+
+compare %>%
+  ggplot(.,aes(x=model,y=mean,col=model)) +
+  geom_point() +
+  geom_errorbar(aes(ymin=mean-std_err, ymax=mean+std_err), width=.2,
+                 position=position_dodge(.9)) +
+  facet_grid(.~.metric) +
+  theme_bw() +
+  theme(axis.text.x = element_blank())
+```
+Looks like tuned random forest has the best result with balanced metrics
+
+
+# Finalize our model and assess with test set
+```{r}
+set.seed(1)
+final_wf <- workflow() %>%
+  add_recipe(ite2_recipe) %>%
+  add_model(rftuneres)
+
+finalres <- final_wf %>%
+  last_fit(split)
+
+finalres %>%
+  collect_predictions() %>%
+  conf_mat(Pass, .pred_class)
+
+finalres %>%
+  collect_metrics() %>%
+  datatable()
+
+final_model <- fit(final_wf, ite2)
+final_model
+
+```
+Looks like it didn't do too well with our test data, unfortunately. Likely due to lack of overall data 
+
+
+# Final Model
+I favor a tuned Random Forest. I will use the entire dataset to train our final model
+```{r, echo=FALSE, message=FALSE}
+set.seed(1)
+final_model <- fit(final_wf, ite2)
+final_model
+
+# if you favor to save your final_model to be used in dashboard please uncomment code below and use this 
+saveRDS(final_model, file = "final_model.rds")
+```
+
+# Predict current learners
+Let's try to predict random ITE scores:
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+new_ite_noname <- read_csv("new_ite_to_predict.csv") # just need to change the values in csv to predict your learners.
+
+p_new_ite_noname <- predict(final_model,new_ite_noname, type = "prob") #gives probability of yes (pass) and no (fail). Probability of no is essentially 1 - probability of yes 
+
+new_ite_prediction <- bind_cols(p_new_ite_noname,new_ite_noname)
+
+```
+
+
+## Prediction using our trained model
+```{r, , echo=FALSE, message=FALSE}
+datatable(new_ite_prediction)
+```
+
+For further reading please go to https://www.tidymodels.org/start/
+
