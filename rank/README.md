@@ -18,24 +18,20 @@ where:
 The proxy step 1 and step 2 exam scores are defined by:
 
 $$
-\begin{cases} hu \end{cases}
+E_i^{(I)} =
+\begin{cases} U_i^{(I)}, & \text{if}\ X_i^{(I)} \text{is unavailable}\\
+X_i^{(I)}, & \text{if}\ U_i^{(I)} \text{is unavailable}\\
+\max\left(U_i^{(I)},X_i^{(I)}\right), & \text{otherwise} \end{cases}
 $$
-
-$$
-\begin{equation}
-  E_i^{(I)} = \left \{
-  \begin{aligned}
-    &0, && \text{if}\ a=1 \\
-    &1, && \text{otherwise}
-  \end{aligned} \right.
-\end{equation} 
-$$
-
-    $$E_i^{(I)} = {█(U_i^((I) ),if X_i^((I) )  is unavailable@X_i^((I) ),if U_i^((I) )  is unavailable@max⁡(U_i^((I) ),X_i^((I) ) ),otherwise)┤$$
 
 and
 
-$$E_i^{(II)} = {█(U_i^((II) ),if X_i^((II) )  is unavailable@X_i^((II) ),if U_i^((II) )  is unavailable@max⁡(U_i^((II) ),X_i^((II) ) ),otherwise)┤$$
+$$
+E_i^{(II)} =
+\begin{cases} U_i^{(II)}, & \text{if}\ X_i^{(II)} \text{is unavailable}\\
+X_i^{(II)}, & \text{if}\ U_i^{(II)} \text{is unavailable}\\
+\max\left(U_i^{(II)},X_i^{(II)}\right), & \text{otherwise} \end{cases}
+$$
 
 where:
 * $U_i^{(I)}$ represents the USMLE Step 1 score percentile (among the applicant pool) of applicant $i$
