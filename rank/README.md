@@ -20,8 +20,9 @@ The proxy step 1 and step 2 exam scores are defined by:
 E_i^((I))={█(U_i^((I) ),if X_i^((I) )  is unavailable@X_i^((I) ),if U_i^((I) )  is unavailable@max⁡(U_i^((I) ),X_i^((I) ) ),otherwise)┤
 and
 E_i^((II))={█(U_i^((II) ),if X_i^((II) )  is unavailable@X_i^((II) ),if U_i^((II) )  is unavailable@max⁡(U_i^((II) ),X_i^((II) ) ),otherwise)┤
+
 where:
-	U_i^((I) ) represents the USMLE Step 1 score percentile (among the applicant pool) of applicant i
-	X_i^((I) ) represents the COMPLEX-USA Level 1 score percentile (among the applicant pool) of applicant i
-	U_i^((II) ) represents the USMLE Step 2 Clinical Skills score percentile (among the applicant pool) of applicant i
-	X_i^((II) ) represents the COMPLEX-USA Level 2 Cognitive Evaluation score percentile (among the applicant pool) of applicant i.
+* $U_i^{(I)}$ represents the USMLE Step 1 score percentile (among the applicant pool) of applicant i
+* $X_i^{(I)}$ represents the COMPLEX-USA Level 1 score percentile (among the applicant pool) of applicant i
+* $U_i^{(II)}$ represents the USMLE Step 2 Clinical Skills score percentile (among the applicant pool) of applicant i
+* $X_i^{(II)}$ represents the COMPLEX-USA Level 2 Cognitive Evaluation score percentile (among the applicant pool) of applicant i.
