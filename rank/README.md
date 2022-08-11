@@ -25,6 +25,3 @@ where:
 	X_i^((I) ) represents the COMPLEX-USA Level 1 score percentile (among the applicant pool) of applicant i
 	U_i^((II) ) represents the USMLE Step 2 Clinical Skills score percentile (among the applicant pool) of applicant i
 	X_i^((II) ) represents the COMPLEX-USA Level 2 Cognitive Evaluation score percentile (among the applicant pool) of applicant i.
-
-
-https://md-math.netlify.app/
