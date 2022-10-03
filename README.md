@@ -1,4 +1,5 @@
 # Open GME
+We encourage medical educators (program directors, associate program directors, assistant program directors, core faculty and also administrators) to immerse themselves in a zone of proximal development and acquire new skill and intuition of data science in a data-abundant and driven era to better data literacy in GME
 
 ## Data Transformation
 ### Guided tutorials (need subscription)
