@@ -1,17 +1,19 @@
 # Open GME
-## Guided tutorials (need subscription)
+
+## Data Transformation
+### Guided tutorials (need subscription)
 [Data manipulation with dplyr](https://app.datacamp.com/learn/courses/data-manipulation-with-dplyr)
-https://app.datacamp.com/learn/courses/working-with-data-in-the-tidyverse
-https://app.datacamp.com/learn/courses/joining-data-with-dplyr
+[Working with data in the Tidyverse](https://app.datacamp.com/learn/courses/working-with-data-in-the-tidyverse)
+[Joining data with dplur](]https://app.datacamp.com/learn/courses/joining-data-with-dplyr)
 
-## Free tutorials
-https://r4ds.had.co.nz/transform.html
+### Free tutorials (highly recommended)
+[R 4 Data Science](https://r4ds.had.co.nz/transform.html)
 
-Cheat sheet for referral:
-https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf
-https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf
-https://raw.githubusercontent.com/rstudio/cheatsheets/main/strings.pdf
-https://raw.githubusercontent.com/rstudio/cheatsheets/main/lubridate.pdf
+### Cheat sheet for R packages:
+[R: Data Transformation](https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf)
+[R: Data Tidying with Tidyr](https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf)
+[R: String manipulation with stringr](https://raw.githubusercontent.com/rstudio/cheatsheets/main/strings.pdf)
+[R: Date and times with lubridate](https://raw.githubusercontent.com/rstudio/cheatsheets/main/lubridate.pdf)
 
 
 Data Visualization (1 month)
