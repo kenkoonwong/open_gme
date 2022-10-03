@@ -2,6 +2,7 @@
 We encourage medical educators (program directors, associate program directors, assistant program directors, core faculty and also administrators) to immerse themselves in a zone of proximal development and acquire new skill and intuition of data science in a data-abundant and driven era to better data literacy in GME.
 
 Below are our steps in learning Data Science in a comfortable pace. If any of the link below is not working, please feel free to email/message/submit an issue and we will either fix the broken link or suggest a different course which is of similar concept and quality.
+
 -----
 
 # Data Science Tutorials
