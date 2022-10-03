@@ -3,7 +3,7 @@ We encourage medical educators (program directors, associate program directors, 
 
 Below are our steps in learning Data Science in a comfortable pace. If any of the link below is not working, please feel free to email/message/submit an issue and we will either fix the broken link or suggest a different course which is of similar concept and quality.
 
-## Step 1: Data Transformation (1 month)
+## Step 1: Data Structure Manipulation/Transformation (1 month)
 ### Guided tutorials (subscription)
 - [Data manipulation with dplyr](https://app.datacamp.com/learn/courses/data-manipulation-with-dplyr)
 - [Working with data in the Tidyverse](https://app.datacamp.com/learn/courses/working-with-data-in-the-tidyverse)
