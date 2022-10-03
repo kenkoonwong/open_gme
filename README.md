@@ -7,7 +7,7 @@ Below are our steps in learning Data Science in a comfortable pace. If any of th
 ### Guided tutorials (subscription)
 - [Data manipulation with dplyr](https://app.datacamp.com/learn/courses/data-manipulation-with-dplyr)
 - [Working with data in the Tidyverse](https://app.datacamp.com/learn/courses/working-with-data-in-the-tidyverse)
-- [Joining data with dplur](]https://app.datacamp.com/learn/courses/joining-data-with-dplyr)
+- [Joining data with dplyr](https://app.datacamp.com/learn/courses/joining-data-with-dplyr)
 
 ### Free tutorials (highly recommended)
 - [R 4 Data Science: Transform](https://r4ds.had.co.nz/transform.html)
