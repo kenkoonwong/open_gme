@@ -68,3 +68,6 @@ Below are our steps in learning Data Science in a comfortable pace. If any of th
 - [ITE Machine Learning Model R script](https://github.com/kenkoonwong/open_gme/blob/main/ite_ml/ite_ml.Rmd)
 - [ITE Mock Data](https://github.com/kenkoonwong/open_gme/blob/main/ite_ml/ite_fake.rda)
 
+------
+# Learning DS Framework
+![](open_gme.png)
