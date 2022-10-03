@@ -1,6 +1,6 @@
 # Open GME
 ## Guided tutorials (need subscription)
-Data manipulation with dplyr(https://app.datacamp.com/learn/courses/data-manipulation-with-dplyr)
+[Data manipulation with dplyr](https://app.datacamp.com/learn/courses/data-manipulation-with-dplyr)
 https://app.datacamp.com/learn/courses/working-with-data-in-the-tidyverse
 https://app.datacamp.com/learn/courses/joining-data-with-dplyr
 
