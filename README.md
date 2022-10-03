@@ -1,55 +1,50 @@
 # Open GME
-We encourage medical educators (program directors, associate program directors, assistant program directors, core faculty and also administrators) to immerse themselves in a zone of proximal development and acquire new skill and intuition of data science in a data-abundant and driven era to better data literacy in GME
+We encourage medical educators (program directors, associate program directors, assistant program directors, core faculty and also administrators) to immerse themselves in a zone of proximal development and acquire new skill and intuition of data science in a data-abundant and driven era to better data literacy in GME.
 
-## Data Transformation
-### Guided tutorials (need subscription)
+Below are our steps in learning Data Science in a comfortable pace. If any of the link below is not working, please feel free to email/message/submit an issue and we will either fix the broken link or suggest a different course which is of similar concept and quality.
+
+## Step 1: Data Transformation (1 month)
+### Guided tutorials (subscription)
 - [Data manipulation with dplyr](https://app.datacamp.com/learn/courses/data-manipulation-with-dplyr)
-[Working with data in the Tidyverse](https://app.datacamp.com/learn/courses/working-with-data-in-the-tidyverse)
-[Joining data with dplur](]https://app.datacamp.com/learn/courses/joining-data-with-dplyr)
+- [Working with data in the Tidyverse](https://app.datacamp.com/learn/courses/working-with-data-in-the-tidyverse)
+- [Joining data with dplur](]https://app.datacamp.com/learn/courses/joining-data-with-dplyr)
 
 ### Free tutorials (highly recommended)
-[R 4 Data Science](https://r4ds.had.co.nz/transform.html)
+- [R 4 Data Science: Transform](https://r4ds.had.co.nz/transform.html)
 
-### Cheat sheet for R packages:
-[R: Data Transformation](https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf)
-[R: Data Tidying with Tidyr](https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf)
-[R: String manipulation with stringr](https://raw.githubusercontent.com/rstudio/cheatsheets/main/strings.pdf)
-[R: Date and times with lubridate](https://raw.githubusercontent.com/rstudio/cheatsheets/main/lubridate.pdf)
+### Cheat sheet:
+- [R: Data Transformation](https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf)
+- [R: Data Tidying with Tidyr](https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf)
+- [R: String manipulation with stringr](https://raw.githubusercontent.com/rstudio/cheatsheets/main/strings.pdf)
+- [R: Date and times with lubridate](https://raw.githubusercontent.com/rstudio/cheatsheets/main/lubridate.pdf)
 
+## Step 2: Data Visualization (1 month)
+### Guided tutorials (subscription)
+- [Introduction to Data Visualization with ggplot2](https://app.datacamp.com/learn/courses/introduction-to-data-visualization-with-ggplot2)
+- [Intermediate Data Visualization with ggplot2](https://app.datacamp.com/learn/courses/intermediate-data-visualization-with-ggplot2)
+- [Interactive Data Visualization with plotly in R](https://app.datacamp.com/learn/courses/interactive-data-visualization-with-plotly-in-r)
+- [Visualization Best Practices in R](https://app.datacamp.com/learn/courses/visualization-best-practices-in-r)
 
-Data Visualization (1 month)
-Visualization is the foundation of communicating findings to audience. Visualization is essential when creating a dashboard.
-Interactive visualization. Plotly
-Types of plots, violinplot, boxplot
+### Free tutorials (highly recommended):
+- [R 4 Data Science: Data Visualization](https://r4ds.had.co.nz/data-visualisation.html)
 
-Guided tutorials:
-https://app.datacamp.com/learn/courses/introduction-to-data-visualization-with-ggplot2
-https://app.datacamp.com/learn/courses/intermediate-data-visualization-with-ggplot2
-https://app.datacamp.com/learn/courses/interactive-data-visualization-with-plotly-in-r
-https://app.datacamp.com/learn/courses/visualization-best-practices-in-r
-Free tutorials:
-https://r4ds.had.co.nz/data-visualisation.html
+### Cheat sheet:
+- [R: Data visualization with ggplot2](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
 
+## Step 3: Shiny Dashboard (1 month)
+### Guided tutorial (subscription)
+- [Building dashboards with Shinydashboard](https://app.datacamp.com/learn/courses/building-dashboards-with-shinydashboard)
+- [Case studies building Web Applications with Shiny in R](https://app.datacamp.com/learn/courses/case-studies-building-web-applications-with-shiny-in-r)
 
+### Free tutorial:
+- [Mastering Shiny](https://mastering-shiny.org/)
 
-Cheat sheet for referral:
-https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf
+### Cheat sheet:
+- [R: Shiny](https://raw.githubusercontent.com/rstudio/cheatsheets/main/shiny.pdf)
 
+## Step 4: Machine Learning through Tidymodels (1 month)
+### Guided tutorial (subscription)
+- [Modeling with Tidymodels in R](https://app.datacamp.com/learn/courses/modeling-with-tidymodels-in-r)
 
-Shiny Dashboard (2 weeks)
-
-Guided tutorial
-https://app.datacamp.com/learn/courses/building-dashboards-with-shinydashboard
-https://app.datacamp.com/learn/courses/case-studies-building-web-applications-with-shiny-in-r
-
-free tutorial:
-https://mastering-shiny.org/
-
-Cheat sheet:
-https://raw.githubusercontent.com/rstudio/cheatsheets/main/shiny.pdf
-
-
-Machine Learning through Tidymodels (2 weeks)
-
-https://app.datacamp.com/learn/courses/modeling-with-tidymodels-in-r
-https://www.tidymodels.org/start/
+### Free tutorials 
+- [Tidymodels](https://www.tidymodels.org/start/)
