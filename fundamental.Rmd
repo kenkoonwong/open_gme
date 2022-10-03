@@ -1,0 +1,74 @@
+---
+title: "Fundamentals"
+output: html_document
+date: '2022-10-03'
+---
+
+# load Tidyverse package and load ITE fake data
+```{r}
+library(tidyverse)
+
+# Load ITE fake data
+load("ite_ml/ite_fake.rda")
+
+```
+tips: to run the above code chunk, you can either click on the `play` button on the right or use keyboard shortcut `ctrl+shft+enter` to run the enter code chunk or `ctrl+enter` to run code line by line. Give it a try!
+
+# View ITE fake data
+```{r}
+# to view it on a separate tab
+ite %>% view()
+
+# to view it on console
+ite %>% glimpse()
+```
+Note the symbol %>% means pipe. It takes the dataframe `ite` and piped it to the function `view`
+
+# How to use Select
+```{r}
+# To select column/variable PGY1_percentile only 
+ite %>%
+  select(PGY1_percentile)
+
+# To select column/variable PGY1_percentile & PGY1_score only 
+ite %>%
+  select(PGY1_percentile, PGY1_score)
+
+# To select column/variable PGY1_percentile & PGY1_score only, and assign to a new dataframe called new_df
+new_df <- ite %>%
+  select(PGY1_percentile, PGY1_score)
+```
+
+# How to use Filter
+```{r}
+# To filter column/variable PGY1_percentile of less than or equal to 35
+ite %>%
+  filter(PGY1_percentile <= 35)
+
+# To filter column/variable PGY1_percentile of less than or equal to 35 OR PGY1_score less than or equal to 60
+ite %>%
+  filter(PGY1_percentile <= 35 | PGY1_score <= 60)
+```
+
+# How to use group_by and mutate
+```{r}
+# To group by residents who passed/failed and to add a new column to assess count of Pass=Yes and Pass=No
+ite %>%
+  group_by(Pass) %>%
+  mutate(count = n())
+```
+
+# How to use case_when
+```{r}
+# how to divide PGY1_percentile to low, medium, high 
+ite %>%
+  mutate(PGY1_percentile_level = case_when(
+    PGY1_percentile <= 35 ~ "low",
+    PGY1_percentile > 35 && PGY1_percentile <= 60 ~ "medium",
+    PGY1_percentile > 60 ~ "high"
+  )) %>%
+  select(Resident, PGY1_percentile, PGY1_percentile_level) %>%
+  arrange(PGY1_percentile)
+
+```
+
