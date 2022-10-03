@@ -414,7 +414,7 @@ final_model <- fit(final_wf, ite2)
 final_model
 
 # if you favor to save your final_model to be used in dashboard please uncomment code below and use this 
-saveRDS(final_model, file = "final_model.rds")
+# saveRDS(final_model, file = "final_model.rds")
 ```
 
 # Predict current learners

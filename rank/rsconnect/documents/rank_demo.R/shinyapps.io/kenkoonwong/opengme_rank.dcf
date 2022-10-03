@@ -1,0 +1,14 @@
+name: opengme_rank
+title: opengme_rank
+username:
+account: kenkoonwong
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5740032
+bundleId: 5621235
+url: https://kenkoonwong.shinyapps.io/opengme_rank/
+when: 1645904880.47386
+lastSyncTime: 1645904880.47386
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: README.md

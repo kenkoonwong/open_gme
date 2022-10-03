@@ -1,0 +1,14 @@
+name: opengme_ccc
+title: opengme_ccc
+username:
+account: kenkoonwong
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5740017
+bundleId: 5621226
+url: https://kenkoonwong.shinyapps.io/opengme_ccc/
+when: 1645904545.9158
+lastSyncTime: 1645904545.9158
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: README.md
