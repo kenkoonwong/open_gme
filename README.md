@@ -1,10 +1,10 @@
 # Open GME
 ## Guided tutorials (need subscription)
-https://app.datacamp.com/learn/courses/data-manipulation-with-dplyr
+![Data manipulation with dplyr](https://app.datacamp.com/learn/courses/data-manipulation-with-dplyr)
 https://app.datacamp.com/learn/courses/working-with-data-in-the-tidyverse
 https://app.datacamp.com/learn/courses/joining-data-with-dplyr
 
-Free tutorials
+## Free tutorials
 https://r4ds.had.co.nz/transform.html
 
 Cheat sheet for referral:
