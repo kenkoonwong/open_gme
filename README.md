@@ -2,7 +2,9 @@
 We encourage medical educators (program directors, associate program directors, assistant program directors, core faculty and also administrators) to immerse themselves in a zone of proximal development and acquire new skill and intuition of data science in a data-abundant and driven era to better data literacy in GME.
 
 Below are our steps in learning Data Science in a comfortable pace. If any of the link below is not working, please feel free to email/message/submit an issue and we will either fix the broken link or suggest a different course which is of similar concept and quality.
+-----
 
+# Data Science Tutorials
 ## Step 1: Data Structure Manipulation/Transformation (1 month)
 ### Guided tutorials (subscription)
 - [Data manipulation with dplyr](https://app.datacamp.com/learn/courses/data-manipulation-with-dplyr)
@@ -55,3 +57,13 @@ Below are our steps in learning Data Science in a comfortable pace. If any of th
 - [Shiny CCC Dashboard Example](https://kenkoonwong.shinyapps.io/opengme_ccc/)
 - [CCC Dashboard Example R Script](https://github.com/kenkoonwong/open_gme/blob/main/CCC/CCC_demo.R)
 - [CCC Mock Data](https://github.com/kenkoonwong/open_gme/blob/main/CCC/cccdb_fake.rda)
+
+# Ranking Algorithm
+- [Ranking Algorithm Dashboard](https://kenkoonwong.shinyapps.io/opengme_rank/)
+- [Rank R script](https://github.com/kenkoonwong/open_gme/blob/main/rank/rank_demo.R)
+- [Rank Mock Data](https://github.com/kenkoonwong/open_gme/blob/main/rank/rank_fake.rda)
+
+# ITE Machine Learning Model
+- [ITE Machine Learning Model R script](https://github.com/kenkoonwong/open_gme/blob/main/ite_ml/ite_ml.Rmd)
+- [ITE Mock Data](https://github.com/kenkoonwong/open_gme/blob/main/ite_ml/ite_fake.rda)
+
