@@ -3,7 +3,7 @@ We encourage medical educators (program directors, associate program directors, 
 
 ## Data Transformation
 ### Guided tutorials (need subscription)
-[Data manipulation with dplyr](https://app.datacamp.com/learn/courses/data-manipulation-with-dplyr)
+[Data manipulation with dplyr](https://app.datacamp.com/learn/courses/data-manipulation-with-dplyr)\n
 [Working with data in the Tidyverse](https://app.datacamp.com/learn/courses/working-with-data-in-the-tidyverse)
 [Joining data with dplur](]https://app.datacamp.com/learn/courses/joining-data-with-dplyr)
 
