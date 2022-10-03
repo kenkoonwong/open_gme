@@ -48,3 +48,10 @@ Below are our steps in learning Data Science in a comfortable pace. If any of th
 
 ### Free tutorials 
 - [Tidymodels](https://www.tidymodels.org/start/)
+
+-----
+
+# CCC Dashboard
+- [Shiny CCC Dashboard Example](https://kenkoonwong.shinyapps.io/opengme_ccc/)
+- [CCC Dashboard Example R Script](https://github.com/kenkoonwong/open_gme/blob/main/CCC/CCC_demo.R)
+- [CCC Mock Data](https://github.com/kenkoonwong/open_gme/blob/main/CCC/cccdb_fake.rda)
