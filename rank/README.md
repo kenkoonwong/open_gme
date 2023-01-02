@@ -1,4 +1,4 @@
-# Rank Dashboard
+# Ranking Dashboard and Algorithm
 
 For Shiny App example, please click [here](https://kenkoonwong.shinyapps.io/opengme_rank/)
 
